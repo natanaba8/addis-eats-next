@@ -1,69 +1,50 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
+import Navigation from "./components/Navigation";
 
-export default function Home() {
+const featuredDishes = [
+  { name: "Doro Wat", slug: "doro-wat" },
+  { name: "Kitfo", slug: "kitfo" },
+  { name: "Tibs", slug: "tibs" },
+];
+
+export default function HomePage() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.js</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="page-shell">
+      <Navigation />
+
+      <section className="hero">
+        <div>
+          <p className="eyebrow">Authentic flavors, freshly served</p>
+          <h1>Welcome to Addis Eats</h1>
+          <p className="lead">
+            Discover our seasonal dishes, classic Ethiopian favorites, and a warm dining
+            experience rooted in tradition.
           </p>
+          <div className="cta-row">
+            <Link href="/menu" className="primary-button">
+              Explore menu
+            </Link>
+            <Link href="/contact" className="secondary-button">
+              Book a table
+            </Link>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="featured">
+        <h2>Featured specials</h2>
+        <div className="card-grid">
+          {featuredDishes.map((dish) => (
+            <article key={dish.slug} className="info-card">
+              <h3>{dish.name}</h3>
+              <p>Prepared with vibrant spices and fresh ingredients.</p>
+              <Link href={`/menu/${dish.slug}`} className="text-link">
+                View details
+              </Link>
+            </article>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
