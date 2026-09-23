@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Providers from "./components/Providers";
 import Navigation from "./components/Navigation";
 import "./globals.css";
 
@@ -21,17 +22,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <div className="site-shell">
-          <header className="site-header">
-            <Navigation />
-          </header>
+        <Providers>
+          <div className="site-shell">
+            <header className="site-header">
+              <Navigation />
+            </header>
 
-          {children}
+            {children}
 
-          <footer className="site-footer">
-            <p>{new Date().getFullYear()} Addis Eats</p>
-          </footer>
-        </div>
+            <footer className="site-footer">
+              <p>{new Date().getFullYear()} Addis Eats</p>
+            </footer>
+          </div>
+        </Providers>
       </body>
     </html>
   );

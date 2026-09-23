@@ -10,7 +10,7 @@ async function DishList() {
 // This menu is mostly static, but a short revalidation window keeps it fresh.
 export const revalidate = 60;
 
-export default function MenuPage() {
+export default async function MenuPage() {
   return (
     <main className="page-shell">
       <section className="route-card">
