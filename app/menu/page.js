@@ -1,21 +1,18 @@
 import Link from "next/link";
-import Navigation from "../components/Navigation";
+import { Suspense } from "react";
 import { MenuList, menuItems } from "./components/MenuList";
 
-export default async function MenuPage({ searchParams }) {
-  const resolvedSearchParams = await searchParams;
-  const triggerError = resolvedSearchParams?.error === "1";
+async function DishList() {
+  await new Promise((resolve) => setTimeout(resolve, 450));
+  return <MenuList items={menuItems} />;
+}
 
-  if (triggerError) {
-    throw new Error("This demo error was deliberately triggered from the menu page.");
-  }
+// This menu is mostly static, but a short revalidation window keeps it fresh.
+export const revalidate = 60;
 
-  await new Promise((resolve) => setTimeout(resolve, 250));
-
+export default function MenuPage() {
   return (
     <main className="page-shell">
-      <Navigation />
-
       <section className="route-card">
         <p className="eyebrow">Handpicked favorites</p>
         <h1>Menu</h1>
@@ -28,7 +25,10 @@ export default async function MenuPage({ searchParams }) {
             Proceed to checkout
           </Link>
         </div>
-        <MenuList items={menuItems} />
+
+        <Suspense fallback={<div className="menu-skeleton">Loading dishes…</div>}>
+          <DishList />
+        </Suspense>
       </section>
     </main>
   );

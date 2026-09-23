@@ -1,11 +1,8 @@
 import Link from "next/link";
-import Navigation from "../components/Navigation";
 
 export default function OffersPage() {
   return (
     <main className="page-shell">
-      <Navigation />
-
       <section className="route-card">
         <p className="eyebrow">This week only</p>
         <h1>Chef offers</h1>

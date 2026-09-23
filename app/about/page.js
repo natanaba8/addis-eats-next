@@ -1,11 +1,8 @@
 import Link from "next/link";
-import Navigation from "../components/Navigation";
 
 export default function AboutPage() {
   return (
     <main className="page-shell">
-      <Navigation />
-
       <section className="route-card">
         <p className="eyebrow">A family story</p>
         <h1>About Addis Eats</h1>

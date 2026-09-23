@@ -1,11 +1,14 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import Navigation from "../../components/Navigation";
 import { menuItems } from "../components/MenuList";
 
+export function generateStaticParams() {
+  return menuItems.map((item) => ({ id: item.slug }));
+}
+
 export default async function MenuItemPage({ params }) {
-  const resolvedParams = await params;
-  const item = menuItems.find((entry) => entry.slug === resolvedParams.id);
+  const { id } = await params;
+  const item = menuItems.find((entry) => entry.slug === id);
 
   if (!item) {
     notFound();
@@ -13,8 +16,6 @@ export default async function MenuItemPage({ params }) {
 
   return (
     <main className="page-shell">
-      <Navigation />
-
       <section className="detail-card">
         <p className="eyebrow">Dish details</p>
         <h1>{item.name}</h1>

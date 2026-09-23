@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Navigation from "./components/Navigation";
 
 const featuredDishes = [
   { name: "Doro Wat", slug: "doro-wat" },
@@ -10,8 +9,6 @@ const featuredDishes = [
 export default function HomePage() {
   return (
     <main className="page-shell">
-      <Navigation />
-
       <section className="hero">
         <div>
           <p className="eyebrow">Authentic flavors, freshly served</p>
@@ -19,6 +16,7 @@ export default function HomePage() {
           <p className="lead">
             Discover our seasonal dishes, classic Ethiopian favorites, and a warm dining
             experience rooted in tradition.
+            <p>የኢትዮጵያን ወቅታዊ የሆኑ  ባህላዊ ምግቦችን ጣዕማቸውን ይሞክሩ ያጣጥሙ። </p>
           </p>
           <div className="cta-row">
             <Link href="/menu" className="primary-button">
