@@ -11,3 +11,6 @@
 | `app/menu/[id]/page.js` | Server | The dynamic dish page is async, static at build time through `generateStaticParams`, and has no client-only logic. |
 | `app/menu/components/MenuList.js` | Server | It renders static menu data for the server stream and does not need browser APIs. |
 | `app/checkout/page.js` | Server | The checkout route is intentionally forced dynamic because it reads request-scoped cookie state. |
+| `app/checkout/CheckoutForm.js` | Client | It uses `useActionState` to provide pending, validation, and cancellation feedback for server actions. |
+| `app/checkout/actions.js` | Server | It validates and writes orders, checks signed-session ownership before cancellation, and revalidates affected paths. |
+| `app/api/**/route.js` | Server | Route handlers serve dishes and accept validated order writes without exposing server secrets. |

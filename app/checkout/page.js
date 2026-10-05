@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
+import CheckoutForm from "./CheckoutForm";
+import { dishes } from "../menu/lib/dishes";
 
 // `cookies()` is read here, so this page must stay force-dynamic.
 export const dynamic = "force-dynamic";
@@ -18,6 +20,7 @@ export default async function CheckoutPage() {
           keep the flavors of Addis flowing.
         </p>
         <div className="status-chip">Cart status: {cartValue}</div>
+        <CheckoutForm dishes={dishes} />
         <Link href="/menu" className="secondary-button">
           Back to menu
         </Link>
