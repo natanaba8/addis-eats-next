@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import Link from "next/link";
 import { cancelOrder, placeOrder } from "./actions";
 
 const initialOrderState = { status: "idle", fieldErrors: {} };
@@ -57,6 +58,9 @@ export default function CheckoutForm({ dishes }) {
       {orderState.status === "placed" ? (
         <div className="order-result" role="status">
           <p>Order placed. Reference: {orderState.orderId}</p>
+          <Link href={`/orders/${orderState.orderId}`} className="text-link">
+            Track order status
+          </Link>
           <form action={cancelAction}>
             <input type="hidden" name="orderId" value={orderState.orderId} />
             <button className="secondary-button" type="submit" disabled={isCancelling}>

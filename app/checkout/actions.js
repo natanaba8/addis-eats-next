@@ -1,7 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { createOrder, deleteOrder, findOrder } from "../menu/lib/orders";
+import { createOrder, findOrder, updateOrder } from "../menu/lib/orders";
 import { validateOrder } from "../menu/lib/order-schema";
 import { getSessionUserId } from "../menu/lib/session";
 
@@ -38,7 +38,7 @@ export async function cancelOrder(_previousState, formData) {
     return { status: "error", message: "Order not found or not owned by this session." };
   }
 
-  deleteOrder(order.id);
+  updateOrder(order.id, { status: "cancelled" });
   revalidatePath("/menu");
   revalidatePath("/checkout");
 

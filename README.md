@@ -15,6 +15,8 @@ This project demonstrates App Router strategy controls for a small restaurant si
 
 See (STRATEGY.md) for the full route-by-route plan.
 
+See [DATA.md](DATA.md) for query keys, fallback behavior, and refresh rules.
+
 ## API endpoints
 
 | Endpoint | Method | Success | Error statuses |
@@ -22,8 +24,9 @@ See (STRATEGY.md) for the full route-by-route plan.
 | `/api/dishes` | GET | `200` | — |
 | `/api/dishes/[id]` | GET | `200` | `404` |
 | `/api/orders` | POST | `201` | `422` |
+| `/api/orders/[id]` | GET | `200` | `404` |
 
-Dish reads return `{ "dishes": [...] }` or `{ "dish": {...} }`. Order requests use JSON fields `dishId`, `quantity`, and `customerName`. Invalid JSON or fields return `422` with the shared error envelope `{ "error": { "code": "...", "message": "...", "fieldErrors": {...} } }`.
+Dish reads return `{ "dishes": [...] }` or `{ "dish": {...} }`; `GET /api/dishes` accepts optional `q` and `page` parameters and returns page metadata. Order requests use JSON fields `dishId`, `quantity`, and `customerName`. Invalid JSON or fields return `422` with the shared error envelope `{ "error": { "code": "...", "message": "...", "fieldErrors": {...} } }`.
 
 Checkout submits through the `placeOrder` server action and uses the same validation schema as `POST /api/orders`. The action revalidates `/menu` and `/checkout` after writes. `cancelOrder` is also a server action; it requires a valid signed `session` cookie and checks the order's owner on the server before deleting it. Hiding or changing the cancel button does not change that check.
 

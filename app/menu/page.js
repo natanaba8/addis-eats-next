@@ -1,16 +1,16 @@
 import Link from "next/link";
-import { Suspense } from "react";
-import { MenuList, menuItems } from "./components/MenuList";
-
-async function DishList() {
-  await new Promise((resolve) => setTimeout(resolve, 450));
-  return <MenuList items={menuItems} />;
-}
+import MenuBrowser from "./components/MenuBrowser";
+import { getDishesPage } from "./lib/menu-data";
 
 // This menu is mostly static, but a short revalidation window keeps it fresh.
 export const revalidate = 60;
 
-export default async function MenuPage() {
+export default async function MenuPage({ searchParams }) {
+  const params = await searchParams;
+  const query = typeof params.q === "string" ? params.q : "";
+  const page = Number.parseInt(params.page ?? "1", 10);
+  const initialData = getDishesPage({ query, page });
+
   return (
     <main className="page-shell">
       <section className="route-card">
@@ -26,9 +26,10 @@ export default async function MenuPage() {
           </Link>
         </div>
 
-        <Suspense fallback={<div className="menu-skeleton">Loading dishes…</div>}>
-          <DishList />
-        </Suspense>
+        <MenuBrowser
+          key={`${initialData.query}:${initialData.page}`}
+          initialData={initialData}
+        />
       </section>
     </main>
   );

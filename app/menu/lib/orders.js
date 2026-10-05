@@ -10,6 +10,7 @@ export function createOrder(orderData, ownerId = null) {
     id: randomUUID(),
     ...orderData,
     ownerId,
+    status: "received",
     createdAt: new Date().toISOString(),
   };
   orderStore.set(order.id, order);
@@ -22,4 +23,13 @@ export function findOrder(id) {
 
 export function deleteOrder(id) {
   return orderStore.delete(id);
+}
+
+export function updateOrder(id, updates) {
+  const order = orderStore.get(id);
+  if (!order) return null;
+
+  const updatedOrder = { ...order, ...updates };
+  orderStore.set(id, updatedOrder);
+  return updatedOrder;
 }

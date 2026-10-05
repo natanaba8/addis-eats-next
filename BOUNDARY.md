@@ -14,3 +14,6 @@
 | `app/checkout/CheckoutForm.js` | Client | It uses `useActionState` to provide pending, validation, and cancellation feedback for server actions. |
 | `app/checkout/actions.js` | Server | It validates and writes orders, checks signed-session ownership before cancellation, and revalidates affected paths. |
 | `app/api/**/route.js` | Server | Route handlers serve dishes and accept validated order writes without exposing server secrets. |
+| `app/menu/components/MenuBrowser.js` | Client | It debounces search, uses the shared SWR fetcher, and preserves previous results across paged query keys. |
+| `app/orders/[id]/page.js` | Server | It reads the initial order snapshot by ID and passes only display-safe fields to the client poller. |
+| `app/orders/[id]/OrderStatus.js` | Client | It polls order status every five seconds and uses the server snapshot as fallback data. |
