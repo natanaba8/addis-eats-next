@@ -50,6 +50,9 @@ export default function CheckoutForm({ dishes }) {
         {orderState.fieldErrors?.form ? (
           <p role="alert">{orderState.fieldErrors.form[0]}</p>
         ) : null}
+        {orderState.status === "error" ? (
+          <p role="alert">{orderState.message}</p>
+        ) : null}
         <button className="primary-button" type="submit" disabled={isOrdering}>
           {isOrdering ? "Placing order..." : "Place order"}
         </button>

@@ -1,12 +1,16 @@
 import { notFound } from "next/navigation";
 import OrderStatus from "./OrderStatus";
-import { findOrder } from "../../menu/lib/orders";
+import { findOrderForOwner } from "../../menu/lib/orders";
+import { getSessionUserId } from "../../menu/lib/session";
 
 export const dynamic = "force-dynamic";
 
 export default async function OrderStatusPage({ params }) {
+  const userId = await getSessionUserId();
+  if (!userId) notFound();
+
   const { id } = await params;
-  const order = findOrder(id);
+  const order = findOrderForOwner(id, userId);
   if (!order) notFound();
 
   const initialOrder = {

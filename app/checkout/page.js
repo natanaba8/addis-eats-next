@@ -1,12 +1,16 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import CheckoutForm from "./CheckoutForm";
 import { dishes } from "../menu/lib/dishes";
+import { getSession } from "../menu/lib/session";
 
 // `cookies()` is read here, so this page must stay force-dynamic.
 export const dynamic = "force-dynamic";
 
 export default async function CheckoutPage() {
+  if (!(await getSession())) redirect("/sign-in?next=%2Fcheckout");
+
   const cookieStore = await cookies();
   const cartValue = cookieStore.get("cart")?.value ?? "empty";
 

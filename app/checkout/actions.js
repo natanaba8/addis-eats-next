@@ -14,12 +14,17 @@ function orderDataFromForm(formData) {
 }
 
 export async function placeOrder(_previousState, formData) {
+  const userId = await getSessionUserId();
+  if (!userId) {
+    return { status: "error", message: "Sign in to place an order." };
+  }
+
   const result = validateOrder(orderDataFromForm(formData));
   if (!result.success) {
     return { status: "invalid", fieldErrors: result.fieldErrors };
   }
 
-  const order = createOrder(result.data, await getSessionUserId());
+  const order = createOrder(result.data, userId);
   revalidatePath("/menu");
   revalidatePath("/checkout");
 

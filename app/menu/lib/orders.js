@@ -21,6 +21,19 @@ export function findOrder(id) {
   return orderStore.get(id);
 }
 
+export function listOrdersForOwner(ownerId) {
+  return [...orderStore.values()].filter((order) => order.ownerId === ownerId);
+}
+
+export function listAllOrders() {
+  return [...orderStore.values()];
+}
+
+export function findOrderForOwner(id, ownerId) {
+  const order = orderStore.get(id);
+  return order?.ownerId === ownerId ? order : null;
+}
+
 export function deleteOrder(id) {
   return orderStore.delete(id);
 }

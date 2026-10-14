@@ -2,6 +2,15 @@ import "server-only";
 
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { cookies } from "next/headers";
+import { getUserRole } from "./auth";
+
+export function createSessionValue(userId) {
+  const secret = process.env.SESSION_SECRET;
+  if (!secret) throw new Error("SESSION_SECRET is required to create a session.");
+
+  const signature = createHmac("sha256", secret).update(userId).digest("hex");
+  return `${userId}.${signature}`;
+}
 
 function verifySessionValue(value) {
   const secret = process.env.SESSION_SECRET;
@@ -21,7 +30,13 @@ function verifySessionValue(value) {
   return timingSafeEqual(expected, provided) ? userId : null;
 }
 
-export async function getSessionUserId() {
+export async function getSession() {
   const cookieStore = await cookies();
-  return verifySessionValue(cookieStore.get("session")?.value);
+  const userId = verifySessionValue(cookieStore.get("session")?.value);
+  const role = userId ? getUserRole(userId) : null;
+  return userId && role ? { id: userId, role } : null;
+}
+
+export async function getSessionUserId() {
+  return (await getSession())?.id ?? null;
 }
