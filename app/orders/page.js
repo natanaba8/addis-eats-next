@@ -3,6 +3,13 @@ import { redirect } from "next/navigation";
 import { getSession } from "../menu/lib/session";
 import { listOrdersForOwner } from "../menu/lib/orders";
 
+export const metadata = {
+  title: "Your orders",
+  description:
+    "Review your recent Addis Eats orders and follow each meal's preparation status.",
+  robots: { index: false, follow: false },
+};
+
 export const dynamic = "force-dynamic";
 
 export default async function OrdersPage() {

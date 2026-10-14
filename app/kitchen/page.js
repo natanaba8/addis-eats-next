@@ -2,6 +2,13 @@ import { notFound, redirect } from "next/navigation";
 import { getSession } from "../menu/lib/session";
 import { listAllOrders } from "../menu/lib/orders";
 
+export const metadata = {
+  title: "Kitchen orders",
+  description:
+    "Staff can review incoming Addis Eats orders and see which dishes need preparing.",
+  robots: { index: false, follow: false },
+};
+
 export const dynamic = "force-dynamic";
 
 export default async function KitchenPage() {

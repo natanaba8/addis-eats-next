@@ -2,6 +2,15 @@ import { redirect } from "next/navigation";
 import { signIn } from "./actions";
 import { getSession } from "../menu/lib/session";
 import { sanitizeNextPath } from "../menu/lib/redirects";
+import { siteUrlForPath } from "../lib/site";
+
+export const metadata = {
+  title: "Sign in",
+  description:
+    "Sign in to Addis Eats to place orders and check the status of your meals.",
+  alternates: { canonical: siteUrlForPath("/sign-in") },
+  robots: { index: false, follow: false },
+};
 
 export const dynamic = "force-dynamic";
 

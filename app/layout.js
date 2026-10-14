@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "./components/Providers";
 import Navigation from "./components/Navigation";
-import { siteUrl } from "./lib/site";
+import { siteUrl, siteUrlForPath } from "./lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,7 +30,7 @@ export const metadata = {
       "Explore Ethiopian favorites, find a dish to share, and order a freshly prepared meal from Addis Eats.",
     images: [
       {
-        url: "/opengraph-image",
+        url: siteUrlForPath("/opengraph-image"),
         width: 1200,
         height: 630,
         alt: "Addis Eats Ethiopian restaurant",

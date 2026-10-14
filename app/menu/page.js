@@ -1,11 +1,13 @@
 import Link from "next/link";
 import MenuBrowser from "./components/MenuBrowser";
 import { getDishesPage } from "./lib/menu-data";
+import { siteUrlForPath } from "../lib/site";
 
 export const metadata = {
   title: "Ethiopian menu",
   description:
     "Browse Addis Eats dishes, read what goes into each recipe, and choose a meal to enjoy.",
+  alternates: { canonical: siteUrlForPath("/menu") },
 };
 
 // This menu is mostly static, but a short revalidation window keeps it fresh.

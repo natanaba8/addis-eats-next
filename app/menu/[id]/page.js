@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findDish, dishes } from "../lib/dishes";
+import { siteUrlForPath } from "../../lib/site";
 
 export function generateStaticParams() {
   return dishes.map((dish) => ({ id: dish.slug }));
@@ -20,6 +21,7 @@ export async function generateMetadata({ params }) {
       description,
       type: "article",
     },
+    alternates: { canonical: siteUrlForPath(`/menu/${dish.slug}`) },
   };
 }
 

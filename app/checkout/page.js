@@ -5,6 +5,13 @@ import CheckoutForm from "./CheckoutForm";
 import { dishes } from "../menu/lib/dishes";
 import { getSession } from "../menu/lib/session";
 
+export const metadata = {
+  title: "Checkout",
+  description:
+    "Review your selected meal and confirm your order with Addis Eats.",
+  robots: { index: false, follow: false },
+};
+
 // `cookies()` is read here, so this page must stay force-dynamic.
 export const dynamic = "force-dynamic";
 
