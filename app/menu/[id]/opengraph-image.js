@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
 import { findDish } from "../lib/dishes";
+import { etb } from "../../lib/format";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -31,7 +32,7 @@ export default async function DishOpenGraphImage({ params }) {
           <div style={{ fontSize: 76, fontWeight: 700 }}>{dish.name}</div>
           <div style={{ fontSize: 30 }}>{dish.description}</div>
           <div style={{ display: "flex", fontSize: 28, fontWeight: 700 }}>
-            ETB {dish.price}
+            {etb(dish.price)}
           </div>
         </div>
       </div>

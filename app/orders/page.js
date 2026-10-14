@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getSession } from "../menu/lib/session";
 import { listOrdersForOwner } from "../menu/lib/orders";
+import { relative, when } from "../lib/format";
 
 export const metadata = {
   title: "Your orders",
@@ -30,7 +31,10 @@ export default async function OrdersPage() {
                 <Link href={`/orders/${order.id}`} className="text-link">
                   {order.dishId} · {order.status}
                 </Link>
-                <span> Placed {new Date(order.createdAt).toLocaleString()}</span>
+                <span>
+                  <time dateTime={order.createdAt}>{when(order.createdAt)}</time>
+                  {` (${relative(order.createdAt)})`}
+                </span>
               </li>
             ))}
           </ul>

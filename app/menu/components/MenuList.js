@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { dishes } from "../lib/dishes";
+import { etb } from "../../lib/format";
 
 export const menuItems = dishes;
 
@@ -13,7 +14,7 @@ export function MenuList({ items = menuItems }) {
             <span>{item.description}</span>
           </div>
           <div>
-            <span className="price">ETB {item.price}</span>
+            <span className="price">{etb(item.price)}</span>
             <div style={{ marginTop: 10 }}>
               <Link href={`/menu/${item.slug}`} className="text-link">
                 Open item

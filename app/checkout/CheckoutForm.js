@@ -3,6 +3,7 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import { cancelOrder, placeOrder } from "./actions";
+import { etb } from "../lib/format";
 
 const initialOrderState = { status: "idle", fieldErrors: {} };
 const initialCancelState = { status: "idle" };
@@ -32,7 +33,7 @@ export default function CheckoutForm({ dishes }) {
           <select name="dishId" required defaultValue={dishes[0]?.slug}>
             {dishes.map((dish) => (
               <option key={dish.slug} value={dish.slug}>
-                {dish.name} - ETB {dish.price}
+                {dish.name} - {etb(dish.price)}
               </option>
             ))}
           </select>

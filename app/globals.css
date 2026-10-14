@@ -411,6 +411,69 @@ h1 {
   cursor: pointer;
 }
 
+.order-map-placeholder,
+.order-map {
+  width: 100%;
+  height: 320px;
+  min-height: 320px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #e7e6dc;
+}
+
+.order-map-placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.order-map-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 98px;
+  height: 32px;
+  padding: 0 10px;
+  border: 2px solid white;
+  border-radius: 999px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.courier-marker {
+  background: #35614a;
+}
+
+.delivery-marker {
+  background: #a3471d;
+}
+
+.connection-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+}
+
+.connection-indicator span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #aa791e;
+}
+
+.connection-connected span {
+  background: #35614a;
+}
+
+.connection-error span,
+.connection-reconnecting span {
+  background: #a3471d;
+}
+
 @media (max-width: 800px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);

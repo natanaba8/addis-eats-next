@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "./components/Providers";
 import Navigation from "./components/Navigation";
 import { siteUrl, siteUrlForPath } from "./lib/site";
+import "leaflet/dist/leaflet.css";
 import "./globals.css";
 
 const geistSans = Geist({

@@ -4,6 +4,12 @@ import { randomUUID } from "node:crypto";
 
 const storeKey = "__addisEatsOrders";
 const orderStore = globalThis[storeKey] ?? (globalThis[storeKey] = new Map());
+const listenersKey = "__addisEatsOrderListeners";
+const orderListeners = globalThis[listenersKey] ?? (globalThis[listenersKey] = new Map());
+
+function publishOrder(order) {
+  for (const listener of orderListeners.get(order.id) ?? []) listener(order);
+}
 
 export function createOrder(orderData, ownerId = null) {
   const order = {
@@ -44,5 +50,17 @@ export function updateOrder(id, updates) {
 
   const updatedOrder = { ...order, ...updates };
   orderStore.set(id, updatedOrder);
+  publishOrder(updatedOrder);
   return updatedOrder;
+}
+
+export function subscribeToOrder(id, listener) {
+  const listeners = orderListeners.get(id) ?? new Set();
+  listeners.add(listener);
+  orderListeners.set(id, listeners);
+
+  return () => {
+    listeners.delete(listener);
+    if (listeners.size === 0) orderListeners.delete(id);
+  };
 }

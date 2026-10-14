@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findDish, dishes } from "../lib/dishes";
 import { siteUrlForPath } from "../../lib/site";
+import { etb } from "../../lib/format";
 
 export function generateStaticParams() {
   return dishes.map((dish) => ({ id: dish.slug }));
@@ -12,7 +13,7 @@ export async function generateMetadata({ params }) {
   const dish = findDish(id);
   if (!dish) return {};
 
-  const description = `${dish.description} Enjoy it at Addis Eats for ETB ${dish.price}.`;
+  const description = `${dish.description} Enjoy it at Addis Eats for ${etb(dish.price)}.`;
   return {
     title: dish.name,
     description,
@@ -58,7 +59,7 @@ export default async function MenuItemPage({ params }) {
         <h1>{item.name}</h1>
         <p>{item.description}</p>
         <p>
-          <strong>Price:</strong> ETB {item.price}
+          <strong>Price:</strong> {etb(item.price)}
         </p>
 
         <div className="cta-row">
