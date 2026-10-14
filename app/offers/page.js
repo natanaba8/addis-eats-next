@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Current dining offers",
+  description:
+    "See this week's Addis Eats special and plan a meal with Ethiopian favorites and coffee.",
+};
+
 export default function OffersPage() {
   return (
     <main className="page-shell">

@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Page not found",
+  description:
+    "We could not find that Addis Eats page. Return to the home page and continue exploring.",
+};
+
 export default function NotFoundPage() {
   return (
     <main className="page-shell">

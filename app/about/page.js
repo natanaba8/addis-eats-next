@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Our story",
+  description:
+    "Meet the people and family cooking traditions behind Addis Eats and our Ethiopian menu.",
+};
+
 export default function AboutPage() {
   return (
     <main className="page-shell">

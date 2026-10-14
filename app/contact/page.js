@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+export const metadata = {
+  title: "Contact and reservations",
+  description:
+    "Get in touch with Addis Eats in Addis Ababa to ask a question or plan your next visit.",
+};
+
 export default function ContactPage() {
   return (
     <main className="page-shell">

@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Providers from "./components/Providers";
 import Navigation from "./components/Navigation";
+import { siteUrl } from "./lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,8 +15,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Addis Eats",
-  description: "A modern restaurant app for exploring dishes and placing orders.",
+  metadataBase: siteUrl,
+  title: {
+    default: "Addis Eats | Ethiopian food made for sharing",
+    template: "%s | Addis Eats",
+  },
+  description:
+    "Explore Ethiopian favorites, find a dish to share, and order a freshly prepared meal from Addis Eats.",
+  openGraph: {
+    type: "website",
+    siteName: "Addis Eats",
+    title: "Addis Eats | Ethiopian food made for sharing",
+    description:
+      "Explore Ethiopian favorites, find a dish to share, and order a freshly prepared meal from Addis Eats.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Addis Eats Ethiopian restaurant",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {

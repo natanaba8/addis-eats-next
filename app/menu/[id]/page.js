@@ -1,21 +1,56 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { menuItems } from "../components/MenuList";
+import { findDish, dishes } from "../lib/dishes";
 
 export function generateStaticParams() {
-  return menuItems.map((item) => ({ id: item.slug }));
+  return dishes.map((dish) => ({ id: dish.slug }));
+}
+
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const dish = findDish(id);
+  if (!dish) return {};
+
+  const description = `${dish.description} Enjoy it at Addis Eats for ETB ${dish.price}.`;
+  return {
+    title: dish.name,
+    description,
+    openGraph: {
+      title: dish.name,
+      description,
+      type: "article",
+    },
+  };
 }
 
 export default async function MenuItemPage({ params }) {
   const { id } = await params;
-  const item = menuItems.find((entry) => entry.slug === id);
+  const item = findDish(id);
 
   if (!item) {
     notFound();
   }
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "MenuItem",
+    name: item.name,
+    description: item.description,
+    offers: {
+      "@type": "Offer",
+      price: item.price,
+      priceCurrency: "ETB",
+    },
+  };
+
   return (
     <main className="page-shell">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        }}
+      />
       <section className="detail-card">
         <p className="eyebrow">Dish details</p>
         <h1>{item.name}</h1>

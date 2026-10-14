@@ -7,6 +7,12 @@ const featuredDishes = [
   { name: "Tibs", slug: "tibs" },
 ];
 
+export const metadata = {
+  title: "Addis Eats | Ethiopian food made for sharing",
+  description:
+    "Discover Ethiopian favorites, seasonal specials, and freshly prepared dishes to enjoy together.",
+};
+
 export default function HomePage() {
   return (
     <main className="page-shell">
