@@ -1,4 +1,4 @@
-import { etb, relative, when } from "./format.js";
+import { etb, relative, when } from "../../lib/format.js";
 
 function csvCell(value) {
   return `"${String(value ?? "").replace(/"/g, '""')}"`;
@@ -8,6 +8,7 @@ export function ordersToCsv(orders) {
   const columns = [
     ["Order ID", (order) => order.id],
     ["Customer", (order) => order.customerName],
+    ["Delivery address", (order) => order.deliveryAddress],
     ["Dish", (order) => order.dishId],
     ["Quantity", (order) => order.quantity],
     ["Price (ETB)", (order) => etb(order.price)],

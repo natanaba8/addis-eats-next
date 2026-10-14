@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { notFound } from "next/navigation";
 import { findDish } from "../lib/dishes";
-import { etb } from "../../lib/format";
+import { etb } from "../../../lib/format.js";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

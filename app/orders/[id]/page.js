@@ -24,6 +24,7 @@ export default async function OrderStatusPage({ params }) {
     id: order.id,
     status: order.status,
     createdAt: order.createdAt,
+    deliveryAddress: order.deliveryAddress,
   };
 
   return (

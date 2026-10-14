@@ -428,6 +428,17 @@ h1 {
   font-weight: 700;
 }
 
+.order-map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(190px, 0.65fr);
+  align-items: start;
+  gap: 18px;
+}
+
+.order-map-details p:last-child {
+  margin-bottom: 0;
+}
+
 .order-map-marker {
   display: inline-flex;
   align-items: center;
@@ -475,6 +486,10 @@ h1 {
 }
 
 @media (max-width: 800px) {
+  .order-map-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .hero {
     grid-template-columns: minmax(0, 1fr);
     grid-template-areas: "image" "copy";

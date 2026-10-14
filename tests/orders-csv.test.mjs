@@ -7,6 +7,7 @@ test("CSV keeps commas, quotes, and newlines inside their cells", () => {
     {
       id: "order-comma",
       customerName: "Comma, Customer",
+      deliveryAddress: "Bole, Addis Ababa",
       dishId: "doro,wat",
       quantity: 1,
       price: 430,
@@ -16,6 +17,7 @@ test("CSV keeps commas, quotes, and newlines inside their cells", () => {
     {
       id: "order-quote",
       customerName: 'Quote "Customer"',
+      deliveryAddress: 'House "3", Bole',
       dishId: "kitfo",
       quantity: 2,
       price: 460,
@@ -25,6 +27,7 @@ test("CSV keeps commas, quotes, and newlines inside their cells", () => {
     {
       id: "order-newline",
       customerName: "Line one\nLine two",
+      deliveryAddress: 'Ground floor, "Building 2"\nRear entrance',
       dishId: "tibs",
       quantity: 1,
       price: 440,
@@ -33,8 +36,8 @@ test("CSV keeps commas, quotes, and newlines inside their cells", () => {
     },
   ]);
 
-  assert.match(csv, /"order-comma","Comma, Customer","doro,wat"/);
-  assert.match(csv, /"order-quote","Quote ""Customer""","kitfo"/);
-  assert.match(csv, /"order-newline","Line one\nLine two","tibs"/);
+  assert.match(csv, /"Comma, Customer","Bole, Addis Ababa","doro,wat"/);
+  assert.match(csv, /"Quote ""Customer""","House ""3"", Bole","kitfo"/);
+  assert.match(csv, /"Line one\nLine two","Ground floor, ""Building 2""\nRear entrance","tibs"/);
   assert.ok(csv.endsWith("\r\n"));
 });

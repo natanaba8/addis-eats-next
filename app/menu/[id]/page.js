@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findDish, dishes } from "../lib/dishes";
 import { siteUrlForPath } from "../../lib/site";
-import { etb } from "../../lib/format";
+import { etb } from "../../../lib/format.js";
 
 export function generateStaticParams() {
   return dishes.map((dish) => ({ id: dish.slug }));

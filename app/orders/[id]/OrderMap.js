@@ -17,9 +17,9 @@ const courierIcon = L.divIcon({
 
 const deliveryIcon = L.divIcon({
   className: "",
-  html: '<span class="order-map-marker delivery-marker">Delivery</span>',
-  iconSize: [110, 34],
-  iconAnchor: [55, 17],
+  html: '<span class="order-map-marker delivery-marker">Address</span>',
+  iconSize: [112, 34],
+  iconAnchor: [56, 17],
 });
 
 function FitRoute() {
@@ -32,7 +32,7 @@ function FitRoute() {
   return null;
 }
 
-export default function OrderMap() {
+export default function OrderMap({ deliveryAddress }) {
   return (
     <MapContainer
       className="order-map"
@@ -47,7 +47,12 @@ export default function OrderMap() {
       />
       <Polyline positions={route} pathOptions={{ color: "#a3471d", weight: 4, dashArray: "8 8" }} />
       <Marker position={courier} icon={courierIcon} />
-      <Marker position={delivery} icon={deliveryIcon} />
+      <Marker
+        position={delivery}
+        icon={deliveryIcon}
+        title={`Approximate map pin for ${deliveryAddress || "delivery address"}`}
+        alt={`Approximate delivery address: ${deliveryAddress || "address not recorded"}`}
+      />
       <FitRoute />
     </MapContainer>
   );

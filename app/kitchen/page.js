@@ -21,6 +21,7 @@ export default async function KitchenPage() {
   const orders = listAllOrders().map((order) => ({
     id: order.id,
     customerName: order.customerName,
+    deliveryAddress: order.deliveryAddress,
     dishId: order.dishId,
     quantity: order.quantity,
     price: findDish(order.dishId)?.price ?? 0,

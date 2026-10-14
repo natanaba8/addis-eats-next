@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { relative, when } from "../../lib/format";
+import { relative, when } from "../../../lib/format.js";
 
 const OrderMap = dynamic(() => import("./OrderMap"), {
   ssr: false,
@@ -60,11 +60,19 @@ export default function OrderStatus({ initialOrder }) {
         {isDelivered ? "Delivered · live updates closed" : `Live updates ${connection}`}
       </p>
       <h2>Courier route</h2>
-      <p>
-        Illustrative route in Addis Ababa: the courier is near Bole, heading to the marked delivery point.
-        This map is a demo route, not live GPS tracking.
-      </p>
-      <OrderMap />
+      <div className="order-map-layout">
+        <OrderMap deliveryAddress={order.deliveryAddress} />
+        <div className="order-map-details">
+          <p><strong>Delivery address:</strong> {order.deliveryAddress || "Address not recorded"}</p>
+          <p>
+            The courier is near Bole and heading to {order.deliveryAddress || "the recorded delivery address"}.
+          </p>
+          <p>
+            The address marker is an approximate Addis Ababa pin because this demo does not geocode
+            addresses. This map is not live GPS tracking.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

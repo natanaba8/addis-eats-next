@@ -3,7 +3,7 @@
 import { useActionState } from "react";
 import Link from "next/link";
 import { cancelOrder, placeOrder } from "./actions";
-import { etb } from "../lib/format";
+import { etb } from "../../lib/format.js";
 
 const initialOrderState = { status: "idle", fieldErrors: {} };
 const initialCancelState = { status: "idle" };
@@ -26,6 +26,20 @@ export default function CheckoutForm({ dishes }) {
           <input name="customerName" autoComplete="name" required minLength={2} maxLength={80} />
           {orderState.fieldErrors?.customerName ? (
             <span role="alert">{orderState.fieldErrors.customerName[0]}</span>
+          ) : null}
+        </label>
+        <label>
+          Delivery address
+          <input
+            name="deliveryAddress"
+            autoComplete="street-address"
+            placeholder="Street, neighborhood, Addis Ababa"
+            required
+            minLength={5}
+            maxLength={180}
+          />
+          {orderState.fieldErrors?.deliveryAddress ? (
+            <span role="alert">{orderState.fieldErrors.deliveryAddress[0]}</span>
           ) : null}
         </label>
         <label>

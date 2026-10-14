@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { dishes } from "../lib/dishes";
-import { etb } from "../../lib/format";
+import { etb } from "../../../lib/format.js";
 
 export const menuItems = dishes;
 

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getSession } from "../menu/lib/session";
 import { listOrdersForOwner } from "../menu/lib/orders";
-import { relative, when } from "../lib/format";
+import { relative, when } from "../../lib/format.js";
 
 export const metadata = {
   title: "Your orders",

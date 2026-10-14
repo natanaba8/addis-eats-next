@@ -10,6 +10,7 @@ function orderDataFromForm(formData) {
     dishId: formData.get("dishId"),
     quantity: formData.get("quantity"),
     customerName: formData.get("customerName"),
+    deliveryAddress: formData.get("deliveryAddress"),
   };
 }
 

@@ -13,6 +13,8 @@ export function validateOrder(input) {
   const dishId = typeof input.dishId === "string" ? input.dishId.trim() : "";
   const customerName =
     typeof input.customerName === "string" ? input.customerName.trim() : "";
+  const deliveryAddress =
+    typeof input.deliveryAddress === "string" ? input.deliveryAddress.trim() : "";
   const quantity = Number(input.quantity);
 
   if (!findDish(dishId)) {
@@ -24,6 +26,9 @@ export function validateOrder(input) {
   if (customerName.length < 2 || customerName.length > 80) {
     fieldErrors.customerName = ["Name must be between 2 and 80 characters."];
   }
+  if (deliveryAddress.length < 5 || deliveryAddress.length > 180) {
+    fieldErrors.deliveryAddress = ["Enter a delivery address between 5 and 180 characters."];
+  }
 
   if (Object.keys(fieldErrors).length > 0) {
     return { success: false, fieldErrors };
@@ -31,6 +36,6 @@ export function validateOrder(input) {
 
   return {
     success: true,
-    data: { dishId, quantity, customerName },
+    data: { dishId, quantity, customerName, deliveryAddress },
   };
 }
