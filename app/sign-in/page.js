@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import PendingSubmitButton from "../components/PendingSubmitButton";
 import { signIn } from "./actions";
 import { getSession } from "../menu/lib/session";
 import { sanitizeNextPath } from "../menu/lib/redirects";
@@ -37,7 +38,9 @@ export default async function SignInPage({ searchParams }) {
           {params?.error === "invalid" ? (
             <p role="alert">The account ID or password is incorrect.</p>
           ) : null}
-          <button className="primary-button" type="submit">Sign in</button>
+          <PendingSubmitButton className="primary-button" pendingLabel="Signing in...">
+            Sign in
+          </PendingSubmitButton>
         </form>
       </section>
     </main>

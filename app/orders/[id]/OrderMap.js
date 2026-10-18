@@ -46,10 +46,12 @@ export default function OrderMap({ deliveryAddress }) {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Polyline positions={route} pathOptions={{ color: "#a3471d", weight: 4, dashArray: "8 8" }} />
-      <Marker position={courier} icon={courierIcon} />
+      <Marker position={courier} icon={courierIcon} interactive={false} keyboard={false} />
       <Marker
         position={delivery}
         icon={deliveryIcon}
+        interactive={false}
+        keyboard={false}
         title={`Approximate map pin for ${deliveryAddress || "delivery address"}`}
         alt={`Approximate delivery address: ${deliveryAddress || "address not recorded"}`}
       />

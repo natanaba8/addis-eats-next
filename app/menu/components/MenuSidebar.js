@@ -16,13 +16,20 @@ export default function MenuSidebar() {
         <button
           type="button"
           className="secondary-button sidebar-toggle"
+          aria-expanded={isExpanded}
+          aria-controls="menu-section-navigation"
           onClick={() => setIsExpanded((previous) => !previous)}
         >
           {isExpanded ? "Hide" : "Show"}
         </button>
       </div>
 
-      <nav className="menu-nav" aria-label="Menu section navigation">
+      <nav
+        id="menu-section-navigation"
+        className="menu-nav"
+        aria-label="Menu section navigation"
+        hidden={!isExpanded}
+      >
         <Link
           href="/menu"
           className={pathname === "/menu" ? "menu-nav-link active" : "menu-nav-link"}

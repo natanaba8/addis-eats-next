@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { cancelOrder, placeOrder } from "./actions";
 import { etb } from "../../lib/format.js";
@@ -17,10 +17,25 @@ export default function CheckoutForm({ dishes }) {
     cancelOrder,
     initialCancelState,
   );
+  const submissionLock = useRef(false);
+
+  useEffect(() => {
+    if (!isOrdering) submissionLock.current = false;
+  }, [isOrdering]);
 
   return (
     <div className="checkout-form-wrap">
-      <form action={orderAction} className="checkout-form">
+      <form
+        action={orderAction}
+        className="checkout-form"
+        onSubmit={(event) => {
+          if (submissionLock.current) {
+            event.preventDefault();
+            return;
+          }
+          submissionLock.current = true;
+        }}
+      >
         <label>
           Your name
           <input name="customerName" autoComplete="name" required minLength={2} maxLength={80} />

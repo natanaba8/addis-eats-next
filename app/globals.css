@@ -37,6 +37,23 @@ select {
   font: inherit;
 }
 
+:where(a[href], button, input:not([type="hidden"]), textarea, select, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 3px solid #35614a;
+  outline-offset: 3px;
+}
+
+button,
+input:not([type="hidden"]),
+textarea,
+select,
+.nav-link,
+.primary-button,
+.secondary-button,
+.text-link,
+.menu-nav-link {
+  min-height: 44px;
+}
+
 .site-shell {
   min-height: 100vh;
   display: flex;
@@ -210,6 +227,8 @@ h1 {
 }
 
 .text-link {
+  display: inline-flex;
+  align-items: center;
   color: var(--primary-dark);
   font-weight: 700;
 }
@@ -263,6 +282,10 @@ h1 {
   display: grid;
   gap: 10px;
   margin-top: 18px;
+}
+
+.menu-nav[hidden] {
+  display: none;
 }
 
 .menu-nav-link {
@@ -452,6 +475,18 @@ h1 {
   font-size: 12px;
   font-weight: 700;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.leaflet-control-zoom a {
+  min-width: 44px;
+  min-height: 44px;
+  line-height: 44px;
+}
+
+.leaflet-control-attribution a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .courier-marker {
