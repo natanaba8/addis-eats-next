@@ -25,10 +25,25 @@ export default async function SignInPage({ searchParams }) {
       <section className="route-card">
         <p className="eyebrow">Addis Eats account</p>
         <h1>Sign in</h1>
+        <aside className="demo-credentials" aria-labelledby="demo-credentials-title">
+          <p className="eyebrow">Demo access</p>
+          <h2 id="demo-credentials-title">Sign in with the demo account</h2>
+          <dl>
+            <div>
+              <dt>Username</dt>
+              <dd><code>natan</code></dd>
+            </div>
+            <div>
+              <dt>Password</dt>
+              <dd><code>123456</code></dd>
+            </div>
+          </dl>
+          <p>Demo credentials only. Do not use this password for a production account.</p>
+        </aside>
         <form action={signIn} className="checkout-form">
           <input type="hidden" name="next" value={nextPath} />
           <label>
-            Account ID
+            Username
             <input name="userId" autoComplete="username" required />
           </label>
           <label>

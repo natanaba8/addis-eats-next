@@ -1,3 +1,4 @@
+
 # Addis Eats Next
 
 This project demonstrates App Router strategy controls for a small restaurant site.
@@ -31,6 +32,8 @@ Dish reads return `{ "dishes": [...] }` or `{ "dish": {...} }`; `GET /api/dishes
 Checkout submits through the `placeOrder` server action and uses the same validation schema as `POST /api/orders`. Both require a valid signed session. `cancelOrder` checks the order owner on the server before changing status. `/orders` and the order detail API/page return only orders owned by the signed-in account. `/kitchen` checks the session's server-resolved staff role before rendering any orders.
 
 Set `SESSION_SECRET` and `AUTH_USERS` in an ignored `.env.local` file. `SESSION_SECRET` must be a strong random value and neither variable should use a `NEXT_PUBLIC_` prefix. `AUTH_USERS` is a JSON array of configured accounts; for example: `[ { "id": "customer-1", "password": "replace-me", "role": "customer" }, { "id": "staff-1", "password": "replace-me-too", "role": "staff" } ]`. Sign-in checks these credentials on the server. Roles are resolved from this server-side configuration, so a form value cannot grant staff access. The `session` cookie contains the account ID and its HMAC-SHA256 signature; it is HttpOnly, Secure, SameSite=Strict, and expires after seven days.
+
+The sign-in page displays the sample `natan` / `123456` account for demonstration. Do not use these public sample credentials in production; configure private customer and staff accounts through `AUTH_USERS` in each deployment environment.
 
 The proxy matcher covers only `/checkout` and `/orders` and their descendants. Pages, actions, and APIs still verify the signed session themselves. The `next` destination is restricted to a same-origin path before redirecting. Orders are held in process memory for this demo, so use a persistent database before deploying across multiple processes or serverless instances.
 

@@ -13,12 +13,10 @@ export default function AboutPage() {
         <p className="eyebrow">A family story</p>
         <h1>About Addis Eats</h1>
         <p>
-          Addis Eats celebrates Ethiopian hospitality with a menu inspired by generations
-          of home-cooked recipes, warm gatherings, and carefully sourced ingredients.
+          Addis Eats offers traditional and popular Ethiopian dishes—give it a try!
         </p>
         <p>
-          We bring together slow-simmered stews, fresh injera, and vibrant spices in a
-          dining experience made for sharing.
+          Addis Eats,  የኢትዮጵያውያን ባህላዊ እና ተወዳጅ ምግቦችን ለእናንተ ለተጠቃሚዎቹ ያቀርባ ይሞክሩት ይጠቀሙ !
         </p>
         <Link href="/menu" className="primary-button">
           Preview our dishes
