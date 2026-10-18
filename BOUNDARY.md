@@ -17,3 +17,5 @@
 | `app/menu/components/MenuBrowser.js` | Client | It debounces search, uses the shared SWR fetcher, and preserves previous results across paged query keys. |
 | `app/orders/[id]/page.js` | Server | It reads the initial order snapshot by ID and passes only display-safe fields to the client poller. |
 | `app/orders/[id]/OrderStatus.js` | Client | It polls order status every five seconds and uses the server snapshot as fallback data. |
+| `app/orders/page.js` | Server | It scopes orders to the signed-in owner, aggregates chart summaries, and applies URL-driven sorting and pagination before rendering semantic table rows. |
+| `app/orders/OrdersCharts.js` | Client | It renders the seven-day aggregate charts and their equivalent data table without receiving order records. |
