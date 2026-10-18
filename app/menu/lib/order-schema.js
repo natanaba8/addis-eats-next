@@ -1,4 +1,5 @@
 import { findDish } from "./dishes";
+import { normalizeNeighborhood } from "./neighborhood";
 
 export function validateOrder(input) {
   const fieldErrors = {};
@@ -15,6 +16,7 @@ export function validateOrder(input) {
     typeof input.customerName === "string" ? input.customerName.trim() : "";
   const deliveryAddress =
     typeof input.deliveryAddress === "string" ? input.deliveryAddress.trim() : "";
+  const neighborhood = normalizeNeighborhood(input.neighborhood, deliveryAddress);
   const quantity = Number(input.quantity);
 
   if (!findDish(dishId)) {
@@ -29,6 +31,9 @@ export function validateOrder(input) {
   if (deliveryAddress.length < 5 || deliveryAddress.length > 180) {
     fieldErrors.deliveryAddress = ["Enter a delivery address between 5 and 180 characters."];
   }
+  if (neighborhood.length < 2 || neighborhood.length > 80) {
+    fieldErrors.neighborhood = ["Enter a neighbourhood between 2 and 80 characters."];
+  }
 
   if (Object.keys(fieldErrors).length > 0) {
     return { success: false, fieldErrors };
@@ -36,6 +41,6 @@ export function validateOrder(input) {
 
   return {
     success: true,
-    data: { dishId, quantity, customerName, deliveryAddress },
+    data: { dishId, quantity, customerName, deliveryAddress, neighborhood },
   };
 }

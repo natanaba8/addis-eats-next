@@ -53,6 +53,7 @@ export default function KitchenOrders({ initialOrders }) {
           {orders.map((order) => (
             <li key={order.id}>
               <strong>{order.customerName}</strong>: {order.dishId} × {order.quantity} · {etb(order.price)} · {order.status}
+              <span> Neighbourhood: {order.neighborhood || "Unspecified"}</span>
               <span> Deliver to: {order.deliveryAddress || "Address not recorded"}</span>
               <span> Placed <time dateTime={order.createdAt}>{when(order.createdAt)}</time> ({relative(order.createdAt)})</span>
               {order.status !== "delivered" && order.status !== "cancelled" ? (

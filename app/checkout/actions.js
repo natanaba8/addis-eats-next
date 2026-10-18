@@ -11,6 +11,7 @@ function orderDataFromForm(formData) {
     quantity: formData.get("quantity"),
     customerName: formData.get("customerName"),
     deliveryAddress: formData.get("deliveryAddress"),
+    neighborhood: formData.get("neighborhood"),
   };
 }
 

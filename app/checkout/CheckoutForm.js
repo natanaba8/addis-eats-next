@@ -58,6 +58,10 @@ export default function CheckoutForm({ dishes }) {
           ) : null}
         </label>
         <label>
+          Neighborhood
+          <input name="neighborhood" autoComplete="address-level3" required minLength={2} maxLength={80} />
+        </label>
+        <label>
           Dish
           <select name="dishId" required defaultValue={dishes[0]?.slug}>
             {dishes.map((dish) => (

@@ -9,6 +9,7 @@ export function ordersToCsv(orders) {
     ["Order ID", (order) => order.id],
     ["Customer", (order) => order.customerName],
     ["Delivery address", (order) => order.deliveryAddress],
+    ["Neighbourhood", (order) => order.neighborhood],
     ["Dish", (order) => order.dishId],
     ["Quantity", (order) => order.quantity],
     ["Price (ETB)", (order) => etb(order.price)],

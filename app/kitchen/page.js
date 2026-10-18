@@ -22,6 +22,7 @@ export default async function KitchenPage() {
     id: order.id,
     customerName: order.customerName,
     deliveryAddress: order.deliveryAddress,
+    neighborhood: order.neighborhood,
     dishId: order.dishId,
     quantity: order.quantity,
     price: findDish(order.dishId)?.price ?? 0,
