@@ -53,9 +53,7 @@ export default function MenuSidebar() {
       </nav>
 
       {isExpanded ? (
-        <p className="sidebar-note">
-          Your selection remains in this sidebar while you move between menu pages.
-        </p>
+        <p className="sidebar-note"></p>
       ) : null}
     </div>
   );
