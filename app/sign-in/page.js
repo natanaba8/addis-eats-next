@@ -57,7 +57,7 @@ export default async function SignInPage({ searchParams }) {
         <p className="eyebrow">Addis Eats account</p>
         <h1>Sign in</h1>
         <aside className="demo-credentials" aria-labelledby="demo-credentials-title">
-          <p className="eyebrow">Demo access</p>
+          {/* <p className="eyebrow">Demo access</p>
           <h2 id="demo-credentials-title">Sign in with the demo account</h2>
           <dl>
             <div>
@@ -68,7 +68,7 @@ export default async function SignInPage({ searchParams }) {
               <dt>Password</dt>
               <dd><code>123456</code></dd>
             </div>
-          </dl>
+          </dl> */}
           <p>Demo credentials only. Do not use this password for a production account.</p>
         </aside>
         <form action={signIn} className="checkout-form">

@@ -1,5 +1,5 @@
 const configuredSiteUrl =
-  process.env.SITE_URL || "https://natanaba8.github.io/addis-eats-next";
+  process.env.SITE_URL || "https://addis-eats-next-sigma.vercel.app";
 const siteUrl = new URL(configuredSiteUrl);
 siteUrl.pathname = `${siteUrl.pathname.replace(/\/+$/, "")}/`;
 

@@ -10,8 +10,8 @@ export function sanitizeNextPath(value) {
   }
 
   try {
-    const destination = new URL(value, "https://addis-eats.invalid");
-    if (destination.origin !== "https://addis-eats.invalid") return "/";
+    const destination = new URL(value, "https://addis-eats-next-sigma.vercel.app");
+    if (destination.origin !== "https://addis-eats-next-sigma.vercel.app") return "/";
     return `${destination.pathname}${destination.search}${destination.hash}`;
   } catch {
     return "/";
