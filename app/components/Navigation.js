@@ -6,7 +6,11 @@ const navItems = [
   { href: "/menu", label: "Menu" },
   { href: "/offers", label: "Offers" },
   { href: "/checkout", label: "Checkout" },
+  { href: "/orders", label: "My orders" },
   { href: "/contact", label: "Contact" },
+  // A plain link keeps this component static (see BOUNDARY.md); the sign-in page
+  // itself shows who is signed in.
+  { href: "/sign-in", label: "Login" },
 ];
 
 export default function Navigation() {

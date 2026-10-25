@@ -1,14 +1,14 @@
-import { dishes } from "./dishes";
+import { listDishes } from "./dishes";
 
 export const DISH_PAGE_SIZE = 2;
 
 export function getDishesPage({ query = "", page = 1 } = {}) {
   const normalizedQuery = query.trim().toLocaleLowerCase();
   const matchingDishes = normalizedQuery
-    ? dishes.filter((dish) =>
+    ? listDishes().filter((dish) =>
         `${dish.name} ${dish.description}`.toLocaleLowerCase().includes(normalizedQuery),
       )
-    : dishes;
+    : listDishes();
   const totalPages = Math.max(1, Math.ceil(matchingDishes.length / DISH_PAGE_SIZE));
   const currentPage = Math.min(Math.max(Number(page) || 1, 1), totalPages);
   const start = (currentPage - 1) * DISH_PAGE_SIZE;

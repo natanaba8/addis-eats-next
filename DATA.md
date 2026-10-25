@@ -9,6 +9,8 @@ All client-side SWR queries use the shared `fetcher` in `app/menu/lib/fetcher.js
 | Client order status | `/api/orders/<order-id>` | Poll every `5000` ms and revalidate on focus; the server-rendered status is supplied as `fallbackData`. | The first response is already rendered by the server, while the short poll interval surfaces later status changes without a loading flash. |
 | Orders dashboard | `/orders?sort=<field>&direction=<asc|desc>&page=<number>&previewState=<state>` | Server-rendered per request; sort/page changes navigate through links. | The server aggregates all-time neighbourhood revenue and seven-day order counts, then passes only summary rows to the chart client; order rows remain server-rendered and scoped to the signed-in owner. Preview states are `loading`, `empty`, `error`, and `populated`. |
 
+Dishes come from `listDishes()` in `app/menu/lib/dishes.js`, an in-memory store seeded with the original four dishes. After an admin adds a dish, `createDish` calls `revalidatePath("/menu", "layout")`, so the next server render of the menu, sidebar, and dish pages includes it, and `/api/dishes` returns it immediately.
+
 `GET /api/dishes` accepts `q` and `page` query parameters and returns the matching page plus pagination metadata. `GET /api/orders/[id]` returns only the status reference and creation time; unknown IDs return `404` with the shared error shape.
 
 The order-status route is `/orders/[id]`; its ID comes from the successful `placeOrder` action response.

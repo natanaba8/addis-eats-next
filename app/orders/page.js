@@ -5,6 +5,7 @@ import { getSession } from "../menu/lib/session";
 import { listOrdersForOwner } from "../menu/lib/orders";
 import { findDish } from "../menu/lib/dishes";
 import { normalizeNeighborhood } from "../menu/lib/neighborhood";
+import { signOut } from "../sign-in/actions";
 import OrdersCharts from "./OrdersCharts";
 import {
   DASHBOARD_PREVIEW_STATES,
@@ -187,6 +188,10 @@ export default async function OrdersPage({ searchParams }) {
       <section className="route-card orders-dashboard">
         <p className="eyebrow">Your account</p>
         <h1>Your orders</h1>
+        <form action={signOut} className="cta-row">
+          <p>Signed in as <strong>{session.id}</strong></p>
+          <button className="secondary-button" type="submit">Sign out</button>
+        </form>
         {isPreview ? (
           <>
             <p className="orders-preview-note" role="status">Preview data only. No account orders are created or changed.</p>

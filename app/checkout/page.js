@@ -2,7 +2,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import CheckoutForm from "./CheckoutForm";
-import { dishes } from "../menu/lib/dishes";
+import { listDishes } from "../menu/lib/dishes";
 import { getSession } from "../menu/lib/session";
 
 export const metadata = {
@@ -31,7 +31,7 @@ export default async function CheckoutPage() {
           keep the flavors of Addis flowing.
         </p>
         <div className="status-chip">Cart status: {cartValue}</div>
-        <CheckoutForm dishes={dishes} />
+        <CheckoutForm dishes={listDishes()} />
         <Link href="/menu" className="secondary-button">
           Back to menu
         </Link>

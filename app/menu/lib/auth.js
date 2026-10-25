@@ -11,8 +11,10 @@ function getConfiguredUsers() {
   }
 }
 
+const ELEVATED_ROLES = ["staff", "admin"];
+
 function roleFor(user) {
-  return user.role === "staff" ? "staff" : "customer";
+  return ELEVATED_ROLES.includes(user.role) ? user.role : "customer";
 }
 
 export function getUserRole(userId) {

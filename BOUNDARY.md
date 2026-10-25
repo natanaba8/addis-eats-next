@@ -5,8 +5,11 @@
 | `app/layout.js` | Server | It owns the root HTML/body, imports global CSS, and passes server-rendered children into the client wrapper without creating callback props. |
 | `app/components/Providers.js` | Client | This is the smallest client shell needed to wrap the app and receive server-rendered children. |
 | `app/components/Navigation.js` | Server | It only renders links and static navigation markup, so it remains server-side. |
-| `app/menu/layout.js` | Server | It composes the persistent menu shell and passes `children` into the nested layout without client-only behavior. |
-| `app/menu/components/MenuSidebar.js` | Client | It uses `usePathname` and `useState`, so the interactive sidebar is the narrowest client boundary. |
+| `app/menu/layout.js` | Server | It composes the persistent menu shell, reads the dish list on the server, and passes only each dish's name and slug to the sidebar. |
+| `app/menu/components/MenuSidebar.js` | Client | It uses `usePathname` and `useState`, so the interactive sidebar is the narrowest client boundary. It receives dishes as a prop instead of importing the server-only dish store. |
+| `app/menu/new/page.js` | Server | It reads the signed session and checks the `admin` role before rendering the add-dish form. |
+| `app/menu/new/AddDishForm.js` | Client | It uses `useActionState` for pending and validation feedback from the `createDish` action. |
+| `app/menu/new/actions.js` | Server | It re-checks the admin role, validates the dish with the shared schema, saves it, and revalidates the menu layout. |
 | `app/menu/page.js` | Server | The route is an async server component that streams the dish list behind Suspense and uses no fetching hooks. |
 | `app/menu/[id]/page.js` | Server | The dynamic dish page is async, static at build time through `generateStaticParams`, and has no client-only logic. |
 | `app/menu/components/MenuList.js` | Server | It renders static menu data for the server stream and does not need browser APIs. |

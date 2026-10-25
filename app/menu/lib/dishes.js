@@ -1,4 +1,6 @@
-export const dishes = [
+import "server-only";
+
+const seedDishes = [
   {
     name: "Doro Wat",
     slug: "doro-wat",
@@ -25,6 +27,23 @@ export const dishes = [
   },
 ];
 
+// Dishes added by an admin are kept in memory, like orders in `orders.js`.
+// They are lost on restart, so a real deployment needs a database.
+const storeKey = "__addisEatsDishes";
+const dishStore = globalThis[storeKey] ?? (globalThis[storeKey] = [...seedDishes]);
+
+// The seed list is used for `generateStaticParams`, so build output stays the same.
+export const dishes = seedDishes;
+
+export function listDishes() {
+  return [...dishStore];
+}
+
 export function findDish(id) {
-  return dishes.find((dish) => dish.slug === id);
+  return dishStore.find((dish) => dish.slug === id);
+}
+
+export function addDish(dish) {
+  dishStore.push(dish);
+  return dish;
 }

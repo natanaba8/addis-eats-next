@@ -1,4 +1,4 @@
-import { dishes } from "./menu/lib/dishes";
+import { listDishes } from "./menu/lib/dishes";
 import { siteUrlForPath } from "./lib/site";
 
 export default function sitemap() {
@@ -8,7 +8,7 @@ export default function sitemap() {
     ...publicPaths.map((path) => ({
       url: siteUrlForPath(path),
     })),
-    ...dishes.map((dish) => ({
+    ...listDishes().map((dish) => ({
       url: siteUrlForPath(`/menu/${dish.slug}`),
     })),
   ];

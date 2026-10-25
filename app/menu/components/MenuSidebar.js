@@ -3,9 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { menuItems } from "./MenuList";
 
-export default function MenuSidebar() {
+export default function MenuSidebar({ menuItems }) {
   const pathname = usePathname();
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -50,6 +49,13 @@ export default function MenuSidebar() {
             {item.name}
           </Link>
         ))}
+
+        <Link
+          href="/menu/new"
+          className={pathname === "/menu/new" ? "menu-nav-link active" : "menu-nav-link"}
+        >
+          + Add a dish (admin)
+        </Link>
       </nav>
 
       {isExpanded ? (

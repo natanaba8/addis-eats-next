@@ -1,10 +1,7 @@
 import Link from "next/link";
-import { dishes } from "../lib/dishes";
 import { etb } from "../../../lib/format.js";
 
-export const menuItems = dishes;
-
-export function MenuList({ items = menuItems }) {
+export function MenuList({ items }) {
   return (
     <ul className="menu-list">
       {items.map((item) => (
