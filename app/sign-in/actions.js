@@ -11,6 +11,7 @@ export async function signIn(formData) {
 
   // Without a secret we cannot sign the cookie, so show a clear message instead of a 500 page.
   if (!process.env.SESSION_SECRET) {
+    console.error("SESSION_SECRET is not set, so sign-in is disabled. Add it to the deployment's environment variables.");
     redirect(`/sign-in?error=config&next=${encodeURIComponent(nextPath)}`);
   }
 

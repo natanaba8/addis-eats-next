@@ -3,12 +3,22 @@ import "server-only";
 import { createHash, timingSafeEqual } from "node:crypto";
 
 function getConfiguredUsers() {
-  try {
-    const users = JSON.parse(process.env.AUTH_USERS ?? "[]");
-    return Array.isArray(users) ? users : [];
-  } catch {
+  // Values copied from `.env.local` into a hosting dashboard often keep the
+  // surrounding quotes, which are not valid JSON, so strip them first.
+  const raw = (process.env.AUTH_USERS ?? "").trim().replace(/^(['"])([\s\S]*)\1$/, "$2");
+  if (!raw) {
+    console.error("AUTH_USERS is not set, so no account can sign in.");
     return [];
   }
+
+  try {
+    const users = JSON.parse(raw);
+    if (Array.isArray(users)) return users;
+    console.error("AUTH_USERS must be a JSON array of accounts.");
+  } catch {
+    console.error("AUTH_USERS is not valid JSON, so no account can sign in.");
+  }
+  return [];
 }
 
 const ELEVATED_ROLES = ["staff", "admin"];
